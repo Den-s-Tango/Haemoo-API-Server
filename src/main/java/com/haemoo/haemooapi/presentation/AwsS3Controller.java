@@ -15,9 +15,15 @@ public class AwsS3Controller {
 
     private final AwsS3Service awsS3Service;
 
-    @GetMapping("/presigned-url")
-    public ResponseEntity<String> getPresignedUrl(@RequestParam String fileName) {
-        String presignedUrl = awsS3Service.getPresignedUrl(fileName);
+    @GetMapping("/presigned-url/get")
+    public ResponseEntity<String> getGetPresignedUrl(@RequestParam String fileName) {
+        String presignedUrl = awsS3Service.generateGetPresignedUrl(fileName);
+        return ResponseEntity.ok(presignedUrl);
+    }
+
+    @GetMapping("/presigned-url/put")
+    public ResponseEntity<String> getPutPresignedUrl(@RequestParam String fileName) {
+        String presignedUrl = awsS3Service.generatePutPresignedUrl(fileName);
         return ResponseEntity.ok(presignedUrl);
     }
 }
