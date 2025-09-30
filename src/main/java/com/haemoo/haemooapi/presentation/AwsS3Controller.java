@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/images")
+@RequestMapping("/videos")
 @RequiredArgsConstructor
 public class AwsS3Controller {
 
