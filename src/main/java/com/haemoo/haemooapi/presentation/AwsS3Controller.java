@@ -1,6 +1,7 @@
 package com.haemoo.haemooapi.presentation;
 
 import com.haemoo.haemooapi.application.AwsS3Service;
+import com.haemoo.haemooapi.dto.PresignedUrlResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,14 +17,20 @@ public class AwsS3Controller {
     private final AwsS3Service awsS3Service;
 
     @GetMapping("/presigned-url/get")
-    public ResponseEntity<String> getGetPresignedUrl(@RequestParam String fileName) {
+    public ResponseEntity<PresignedUrlResponse> getGetPresignedUrl(@RequestParam String fileName) {
         String presignedUrl = awsS3Service.generateGetPresignedUrl(fileName);
-        return ResponseEntity.ok(presignedUrl);
+
+        PresignedUrlResponse response = new PresignedUrlResponse(presignedUrl);
+
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/presigned-url/put")
-    public ResponseEntity<String> getPutPresignedUrl(@RequestParam String fileName) {
+    public ResponseEntity<PresignedUrlResponse> getPutPresignedUrl(@RequestParam String fileName) {
         String presignedUrl = awsS3Service.generatePutPresignedUrl(fileName);
-        return ResponseEntity.ok(presignedUrl);
+
+        PresignedUrlResponse response = new PresignedUrlResponse(presignedUrl);
+
+        return ResponseEntity.ok(response);
     }
 }
