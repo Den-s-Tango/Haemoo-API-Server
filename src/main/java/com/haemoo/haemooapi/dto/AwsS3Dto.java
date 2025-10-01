@@ -3,11 +3,11 @@ package com.haemoo.haemooapi.dto;
 import lombok.Getter;
 
 @Getter
-public class PresignedUrlResponse {
+public class PresignedUrlDto {
 
     private final String url;
 
-    public PresignedUrlResponse(String url) {
+    public PresignedUrlDto(String url) {
         this.url = url;
     }
 
